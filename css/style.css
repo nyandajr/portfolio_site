@@ -9702,11 +9702,12 @@ body {
   overflow: hidden;
   margin-bottom: 20px;
   width: 100%;
-  max-width: 300px; /* Fixed width for uniformity */
+  max-width: 3300px; /* Fixed width for uniformity */
   height: 400px;    /* Fixed height for uniformity */
   display: flex;
   flex-direction: column;
   background-color: var(--yellow);
+ 
 }
 
 .card-img {
@@ -9727,6 +9728,7 @@ body {
 .card-body a {
   text-decoration: none;
   color: #333;
+ 
 }
 
 .card-body a:hover {
@@ -9735,7 +9737,8 @@ body {
 
 /* Modal Styles */
 .modal-content {
-  border-radius: 5px;
+  border-radius: 50px;
+  
 }
 
 .modal-header {
@@ -9758,6 +9761,48 @@ body {
 @media (max-width: 767px) {
   .card-body {
       padding: 10px;
+
+      
   }
 }
+
+/* Contact Section Styling */
+.contact-section {
+  padding: 2rem 0; /* Adjust padding as needed */
+}
+
+/* Ensure container is centered */
+.container {
+  text-align: center; /* Center text inside the container */
+}
+
+/* Center the row and its content */
+.row {
+  display: flex;
+  justify-content: center; /* Center items inside the row */
+  flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+/* Center the contact-info elements */
+.contact-info {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap if needed */
+  justify-content: center; /* Center items horizontally */
+  gap: 10px; /* Add spacing between items */
+}
+
+/* Card Styling */
+.box {
+  flex: 1 1 30%; /* Adjust card width */
+  margin: 10px; /* Add margin around cards */
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+  .box {
+    flex: 1 1 80%; /* Adjust card width for mobile */
+    margin: 10px 0; /* Margin on top and bottom for mobile */
+  }
+}
+
 
