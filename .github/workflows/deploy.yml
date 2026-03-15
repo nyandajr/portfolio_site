@@ -31,7 +31,7 @@ jobs:
       - name: Build
         env:
           GITHUB_PAGES: true
-          NEXT_PUBLIC_BASE_PATH: /portfolio-next
+          NEXT_PUBLIC_BASE_PATH: /portfolio_site
         run: |
           npm run build
 
