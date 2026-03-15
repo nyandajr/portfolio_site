@@ -9,13 +9,7 @@ const nextConfig = {
   basePath,
   assetPrefix: basePath,
   images: {
-    // If you load remote images, add domains here.
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'raw.githubusercontent.com',
-      },
-    ],
+    unoptimized: true,
   },
 };
 
