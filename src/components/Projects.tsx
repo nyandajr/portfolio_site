@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { projects } from '@/data/projects';
+import { projects } from '../data/projects';
 
 export function Projects() {
   return (
