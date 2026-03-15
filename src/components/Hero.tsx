@@ -53,7 +53,7 @@ export function Hero() {
           <div className="absolute -top-14 -right-10 h-56 w-56 rounded-full bg-brand-500/20 blur-3xl" />
           <div className="relative rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl">
             <Image
-              src="https://raw.githubusercontent.com/nyandajr/portfolio_site/main/images/freddy.png"
+              src="/images/freddy.png"
               alt="Freddy Nyanda"
               width={420}
               height={420}
