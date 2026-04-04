@@ -1,411 +1,1197 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Freddy Nyanda - Data Scientist with 4+ years of experience in Machine Learning, specializing in Customer Analytics, Churn Prediction, and AI-Driven Insights.">
-    <title>Freddy Nyanda | Data Scientist</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freddy Nyanda | ML Engineer & Data Scientist</title>
+  <meta name="description" content="ML Engineer & Data Scientist specializing in customer analytics, churn prediction, and AI-driven insights. Built predictive ML solutions for mobile money and telecom in East Africa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #060a10;
+      --bg2: #0c1220;
+      --bg3: #111827;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --brand: #38bdf8;
+      --brand2: #0ea5e9;
+      --brand-dim: rgba(56,189,248,0.12);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --white: #ffffff;
+      --shadow: rgba(0,0,0,0.4);
+    }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;600;700;800&display=swap"
-        rel="stylesheet">
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg2: #f1f5f9;
+      --bg3: #e2e8f0;
+      --card: rgba(0,0,0,0.03);
+      --border: rgba(0,0,0,0.08);
+      --brand: #0284c7;
+      --brand2: #0369a1;
+      --brand-dim: rgba(2,132,199,0.1);
+      --text: #1e293b;
+      --muted: #64748b;
+      --white: #0f172a;
+      --shadow: rgba(0,0,0,0.1);
+    }
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    /* THEME TOGGLE */
+    .theme-toggle {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    .theme-toggle:hover {
+      background: var(--brand-dim);
+      border-color: var(--brand);
+      color: var(--brand);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NOISE TEXTURE */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(6,10,16,0.8);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span { color: var(--brand); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--brand); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-dim);
+      border: 1px solid rgba(56,189,248,0.3);
+      color: var(--brand);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--brand);
+      color: var(--bg);
+    }
+
+    /* HERO */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #home::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(14,165,233,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 60px 0;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-dim);
+      border: 1px solid rgba(56,189,248,0.25);
+      color: var(--brand);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--brand);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span { color: var(--brand); }
+
+    .hero-desc {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand);
+      color: var(--bg);
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 0 30px rgba(56,189,248,0.2);
+    }
+
+    .btn-primary:hover {
+      background: #7dd3fc;
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(56,189,248,0.35);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--brand);
+      color: var(--brand);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* HERO IMAGE */
+    .hero-img-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-img-frame {
+      position: relative;
+      width: 360px;
+      height: 420px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      box-shadow: 0 0 60px rgba(56,189,248,0.1), 0 40px 80px rgba(0,0,0,0.4);
+    }
+
+    .hero-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .hero-img-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(6,10,16,0.6));
+      z-index: 1;
+    }
+
+    .hero-badge {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(6,10,16,0.9);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      padding: 10px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .hero-badge i { color: var(--brand); }
+    .badge-1 { top: 20px; right: -30px; }
+    .badge-2 { bottom: 40px; left: -30px; }
+
+    /* SECTIONS */
+    section { padding: 100px 0; position: relative; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--brand);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px; height: 2px;
+      background: var(--brand);
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 60px;
+    }
+
+    /* ABOUT */
+    #about { background: var(--bg2); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .about-text p strong { color: var(--text); }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .about-card h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--brand);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .about-card p {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .enjoy-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .enjoy-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .enjoy-card ul { list-style: none; }
+
+    .enjoy-card li {
+      display: flex;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .enjoy-card li:last-child { border-bottom: none; }
+    .enjoy-card li::before { content: '→'; color: var(--brand); flex-shrink: 0; }
+
+    /* EXPERIENCE */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-item:last-child { border-bottom: none; }
+
+    .exp-date {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--brand);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .exp-role {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .exp-company {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .exp-points { list-style: none; }
+
+    .exp-points li {
+      display: flex;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .exp-points li::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--brand);
+      border-radius: 50%;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    /* SKILLS */
+    #skills { background: var(--bg2); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .skill-card:hover {
+      border-color: rgba(56,189,248,0.3);
+      transform: translateY(-4px);
+    }
+
+    .skill-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .tag:hover {
+      background: var(--brand-dim);
+      border-color: rgba(56,189,248,0.3);
+      color: var(--brand);
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      border-color: rgba(56,189,248,0.3);
+      transform: translateY(-4px);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-body h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .project-body p {
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .project-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-sm-primary {
+      background: var(--brand);
+      color: var(--bg);
+    }
+
+    .btn-sm-primary:hover { background: #7dd3fc; }
+
+    .btn-sm-outline {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-sm-outline:hover {
+      border-color: var(--brand);
+      color: var(--brand);
+    }
+
+    /* CONTACT */
+    #contact { background: var(--bg2); }
+
+    .contact-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-wrap .section-title { margin-bottom: 12px; }
+    .contact-wrap .section-desc { margin: 0 auto 48px; }
+
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: left;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.1);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--brand);
+      color: var(--bg);
+      border: none;
+      padding: 16px;
+      border-radius: 100px;
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      background: #7dd3fc;
+      transform: translateY(-2px);
+    }
+
+    .contact-alt {
+      margin-top: 32px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .contact-alt p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .contact-alt a {
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    footer a { color: var(--brand); text-decoration: none; }
+
+    /* REVEAL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-grid, .about-grid, .exp-item { grid-template-columns: 1fr; }
+      .hero-img-wrap { display: none; }
+      .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; }
+      .about-cards { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-alt { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">Freddy Nyanda<span class="text-accent">.</span></a>
-            <div class="nav-links">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">Freddy <span>Nyanda</span></a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
+      <a href="https://github.com/nyandajr" target="_blank" class="nav-cta">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </div>
+  </div>
+</nav>
 
-                <!-- Theme Toggle -->
-                <div class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </div>
-            </div>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
+<!-- HERO -->
+<section id="home">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="reveal">
+        <div class="hero-tag">ML Engineer · Data Scientist · East Africa</div>
+        <h1 class="hero-title">Freddy<br /><span>Nyanda</span></h1>
+        <p class="hero-desc">
+          I build predictive ML systems and data products that help teams increase retention, grow revenue, and deliver actionable insights at scale across East Africa.
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
+          <a href="#contact" class="btn-outline"><i class="fas fa-envelope"></i> Get in touch</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <div class="hero-text reveal">
-                <h3>Hello, I'm</h3>
-                <h1>Freddy Nyanda</h1>
-                <span class="hero-subtitle">Data Scientist</span>
-                <p class="hero-description">
-                    With over 4 years of experience in developing end-to-end predictive machine learning solutions, I
-                    specialize in transforming complex datasets into actionable business strategies. My expertise
-                    encompasses Customer Analytics, Churn Prediction, and AI-Driven Insights, empowering organizations
-                    to drive growth and maximize value through data.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-outline">Contact Me</a>
-                </div>
-            </div>
-            <div class="hero-image reveal">
-                <div class="hero-img-container">
-                    <img src="images/freddy.png" alt="Freddy Nyanda">
-                </div>
-
-                <!-- Floating Badges -->
-                <div class="hero-badge badge-1">
-                    <i class="fab fa-python"></i>
-                    <span>Python Expert</span>
-                </div>
-                <div class="hero-badge badge-2">
-                    <i class="fas fa-brain"></i>
-                    <span>AI Solutions</span>
-                </div>
-            </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Models deployed</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">200M+</div>
+            <div class="stat-label">Data processed</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">12+</div>
+            <div class="stat-label">Projects shipped</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">Years experience</div>
+          </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>About Me</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-text reveal">
-                    <p class="mb-2">
-                        I am a Data Scientist with <strong>4+ years of experience</strong> developing predictive and
-                        prescriptive machine learning solutions across mobile money, telecom, and research environments.
-                    </p>
-                    <p class="mb-2">
-                        My expertise lies in building robust models for <strong>customer segmentation, churn prediction,
-                            and revenue forecasting</strong>. I have hands-on experience deploying deep learning models
-                        into production and translating complex business challenges into actionable AI-driven insights.
-                    </p>
-                    <p>
-                        Currently, I work as a Pricing & CVM Analyst at Mixx by Yas, where I leverage data to optimize
-                        pricing strategies and enhance customer value.
-                    </p>
-
-                    <div class="about-cards">
-                        <div class="info-card">
-                            <h4>Experience</h4>
-                            <p>4+ Years</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>Specialization</h4>
-                            <p>Machine Learning</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>Location</h4>
-                            <p>Dar es Salaam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-skills reveal">
-                    <!-- Optional visual element or additional info -->
-                </div>
-            </div>
+      </div>
+      <div class="hero-img-wrap reveal">
+        <div class="hero-img-frame">
+          <img src="images/freddy.png" alt="Freddy Nyanda" />
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>Work Experience</h2>
-            </div>
-            <div class="timeline">
-                <!-- Current Role -->
-                <div class="timeline-item reveal">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Jan 2025 – Present</span>
-                        <h3>Pricing & CVM Analyst</h3>
-                        <h4>Mixx by Yas</h4>
-                        <ul>
-                            <li>Developed predictive churn and revenue forecasting models using Python and SQL to
-                                support customer value management.</li>
-                            <li>Built behavioral customer segmentation models to optimize campaign targeting, improve
-                                ARPU, and enhance retention.</li>
-                            <li>Performed EDA and feature engineering on large-scale mobile money transaction datasets.
-                            </li>
-                            <li>Collaborated with commercial and marketing teams to translate business problems into
-                                data-driven AI solutions.</li>
-                            <li>Automated analytics pipelines to improve campaign execution speed and analytical
-                                accuracy.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Previous Role -->
-                <div class="timeline-item reveal">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Jan 2023 – Dec 2024</span>
-                        <h3>Lead Data Scientist</h3>
-                        <h4>AI4D Research Lab</h4>
-                        <ul>
-                            <li>Led the end-to-end machine learning lifecycle, from data acquisition and EDA to model
-                                development, deployment, and monitoring.</li>
-                            <li>Developed and deployed deep learning-based prediction models using TensorFlow/PyTorch
-                                for early-risk identification.</li>
-                            <li>Conducted feature engineering, model evaluation, and performance tuning to improve model
-                                accuracy and stability.</li>
-                            <li>Worked closely with multidisciplinary teams to deliver AI-driven insights for
-                                operational and policy planning.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-badge badge-1">
+          <i class="fab fa-python"></i>
+          <span>Python Expert</span>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>Skills & Competencies</h2>
-            </div>
-            <div class="skills-grid">
-                <!-- ML & Analytics -->
-                <div class="skill-category reveal">
-                    <h3><i class="fas fa-brain text-accent"></i> ML & Analytics</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Predictive Modeling</span>
-                        <span class="skill-tag">Customer Segmentation</span>
-                        <span class="skill-tag">Time Series Forecasting</span>
-                        <span class="skill-tag">Feature Engineering</span>
-                        <span class="skill-tag">Model Optimization</span>
-                        <span class="skill-tag">Statistical Analysis</span>
-                        <span class="skill-tag">EDA</span>
-                        <span class="skill-tag">Hypothesis Testing</span>
-                    </div>
-                </div>
-
-                <!-- Tools & Tech -->
-                <div class="skill-category reveal">
-                    <h3><i class="fas fa-code text-accent"></i> Tools & Tech</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Jupyter</span>
-                    </div>
-                </div>
-
-                <!-- Data Platforms -->
-                <div class="skill-category reveal">
-                    <h3><i class="fas fa-database text-accent"></i> Data Platforms</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">SQL Server</span>
-                        <span class="skill-tag">PySpark</span>
-                        <span class="skill-tag">Data Lakes</span>
-                        <span class="skill-tag">ETL Pipelines</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Tableau</span>
-                        <span class="skill-tag">REST APIs</span>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-badge badge-2">
+          <i class="fas fa-brain"></i>
+          <span>AI Solutions</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>Featured Projects</h2>
-            </div>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card reveal">
-                    <div class="project-content">
-                        <h3>Customer Churn Prediction Model</h3>
-                        <p>Developed robust classification models (Logistic Regression, Random Forest, XGBoost) to
-                            predict customer churn using behavioral and transaction data. Performed comprehensive EDA
-                            and feature engineering to identify key churn drivers.</p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Scikit-learn</span>
-                            <span class="tech-badge">XGBoost</span>
-                            <span class="tech-badge">Pandas</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card reveal">
-                    <div class="project-content">
-                        <h3>Revenue Forecasting System</h3>
-                        <p>Built advanced time-series forecasting models using ARIMA and Prophet to predict transaction
-                            volumes and revenue trends. The system supports strategic business planning and pricing
-                            decisions with high-accuracy forecasts.</p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Prophet</span>
-                            <span class="tech-badge">ARIMA</span>
-                            <span class="tech-badge">Time Series</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card reveal">
-                    <div class="project-content">
-                        <h3>Behavioral Customer Segmentation</h3>
-                        <p>Implemented Unsupervised Learning models (K-Means, Hierarchical Clustering) using transaction
-                            frequency and monetary value metrics. Successfully identified high-value, growth, and
-                            at-risk customer segments for targeted marketing strategies.</p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Clustering</span>
-                            <span class="tech-badge">K-Means</span>
-                            <span class="tech-badge">Data Mining</span>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <!-- Project 5 -->
-                <div class="project-card reveal">
-                    <div class="project-content">
-                        <h3>NLP Customer Sentiment Analysis</h3>
-                        <p>Built a Natural Language Processing pipeline using BERT to analyze customer feedback from
-                            social media and support tickets. Automated the categorization of customer issues and
-                            sentiment tracking to identify service pain points in real-time.</p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">BERT</span>
-                            <span class="tech-badge">Hugging Face</span>
-                            <span class="tech-badge">NLP</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Building ML that moves East Africa forward</h2>
+        <div class="about-text">
+          <p>I am an <strong>ML Engineer & Data Scientist</strong> with 4+ years of experience developing predictive and prescriptive machine learning solutions across mobile money, telecom, and research environments.</p>
+          <p>My expertise lies in building robust models for <strong>customer segmentation, churn prediction, and revenue forecasting</strong>. I have hands-on experience deploying LightGBM and XGBoost pipelines into production and translating complex business challenges into actionable AI-driven insights.</p>
+          <p>Currently, I work as a <strong>Pricing & CVM Analyst at Mixx by Yas (Axian Group)</strong>, where I leverage data to optimize pricing strategies and enhance customer value across Tanzania.</p>
         </div>
-    </section>
-
-    <!-- Education & Certifications -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>Education & Certifications</h2>
-            </div>
-            <div class="edu-grid">
-                
-
-                <!-- Certifications -->
-                <div class="cert-card reveal">
-                    <h3><i class="fas fa-certificate text-accent"></i> Certifications</h3>
-                    <div class="cert-list">
-                        <div class="cert-item">
-                            <i class="fas fa-check-circle cert-icon"></i>
-                            <span>B.Sc. Business Information & Communication Technology</span>
-                        </div>
-                        <div class="cert-item">
-                            <i class="fas fa-check-circle cert-icon"></i>
-                            <span>Machine Learning Data Prize Certificate (2024)</span>
-                        </div>
-                        <div class="cert-item">
-                            <i class="fas fa-check-circle cert-icon"></i>
-                            <span>Machine Learning Training - UDOM (2023)</span>
-                        </div>
-                        <div class="cert-item">
-                            <i class="fas fa-check-circle cert-icon"></i>
-                            <span>IBM Data Science Certificate (2023)</span>
-                        </div>
-                        <div class="cert-item">
-                            <i class="fas fa-check-circle cert-icon"></i>
-                            <span>Google Professional Data Analytics (2022)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="about-cards">
+          <div class="about-card">
+            <h4>Experience</h4>
+            <p>4+ Years</p>
+          </div>
+          <div class="about-card">
+            <h4>Specialization</h4>
+            <p>Machine Learning</p>
+          </div>
+          <div class="about-card">
+            <h4>Location</h4>
+            <p>Dar es Salaam 🇹🇿</p>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="enjoy-card reveal">
+        <h3>What I enjoy building</h3>
+        <ul>
+          <li>End-to-end ML pipelines — data, model, deployment</li>
+          <li>Customer analytics dashboards & segmentation tools</li>
+          <li>Forecasting & optimization models for revenue & churn</li>
+          <li>Production-grade APIs and automated data products</li>
+          <li>CI/CD pipelines for ML workflows</li>
+          <li>Real-time financial tracking & prediction systems</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container contact-container">
-            <div class="section-header reveal">
-                <h2>Get In Touch</h2>
-                <p>Interested in collaborating or have a project in mind? Let's connect!</p>
-            </div>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label reveal">Work Experience</div>
+    <h2 class="section-title reveal">Where I've delivered impact</h2>
+    <p class="section-desc reveal">Roles focused on turning data into measurable business outcomes using AI-driven systems.</p>
 
-            <div class="contact-info reveal">
-                <div class="contact-item">
-                    <a href="mailto:freddynyanda@proton.me" class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <h4>Email</h4>
-                    <p>freddynyanda@proton.me</p>
-                </div>
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-date">Jan 2025 – Present</div>
+        <div class="exp-role">Pricing & CVM Analyst</div>
+        <div class="exp-company">Mixx by Yas · Axian Group</div>
+      </div>
+      <ul class="exp-points">
+        <li>Develop predictive churn and revenue forecasting models using Python, LightGBM, and XGBoost to support customer value management.</li>
+        <li>Built 7-segment behavioral customer segmentation model (Super Power User → Passive) to optimize campaign targeting, improve ARPU, and enhance retention.</li>
+        <li>Maintains ML pipelines, ETL procedures, data cubes, and automated reporting systems on SQL Server.</li>
+        <li>Built PushPromo daily prediction pipeline and Luku SMS Reminder Engine running in production.</li>
+        <li>Collaborated with commercial teams to translate business problems into data-driven AI solutions.</li>
+      </ul>
+    </div>
 
-                <div class="contact-item">
-                    <a href="tel:+255779756097" class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </a>
-                    <h4>Phone</h4>
-                    <p>+255 779 756 097</p>
-                </div>
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-date">Jan 2023 – Dec 2024</div>
+        <div class="exp-role">Lead Data Scientist</div>
+        <div class="exp-company">AI4D Research Lab</div>
+      </div>
+      <ul class="exp-points">
+        <li>Led end-to-end ML lifecycle, from data acquisition and EDA to model development, deployment, and monitoring.</li>
+        <li>Deployed deep learning-based prediction models using TensorFlow/PyTorch for early-risk identification.</li>
+        <li>Improved model accuracy and stability through systematic feature engineering and tuning.</li>
+        <li>Worked with multidisciplinary teams to deliver AI-driven insights for operational and policy planning.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h4>Location</h4>
-                    <p>Goba, Dar es Salaam, Tanzania</p>
-                </div>
-            </div>
-
-            <div class="social-links reveal">
-                <a href="https://www.linkedin.com/in/freddy-nyanda-971233204/" target="_blank" class="social-link"
-                    title="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://github.com/nyandajr" target="_blank" class="social-link" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:freddynyanda@proton.me" class="social-link" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label reveal">Skills & Competencies</div>
+    <h2 class="section-title reveal">Tools I use to build & deploy</h2>
+    <p class="section-desc reveal">A snapshot of the tools and techniques I use to design, build, and deploy data products.</p>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3><span>🧠</span> ML & Analytics</h3>
+        <div class="skill-tags">
+          <span class="tag">LightGBM</span>
+          <span class="tag">XGBoost</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">Predictive Modeling</span>
+          <span class="tag">Customer Segmentation</span>
+          <span class="tag">Time Series</span>
+          <span class="tag">Feature Engineering</span>
+          <span class="tag">EDA</span>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="current-year">2025</span> Freddy Nyanda. All Rights Reserved.</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span>🗄️</span> Data Platforms</h3>
+        <div class="skill-tags">
+          <span class="tag">SQL Server</span>
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">ETL Pipelines</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">REST APIs</span>
         </div>
-    </footer>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span>⚙️</span> Engineering</h3>
+        <div class="skill-tags">
+          <span class="tag">Docker</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Git</span>
+          <span class="tag">Azure AI</span>
+          <span class="tag">Linux</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label reveal">Featured Projects</div>
+    <h2 class="section-title reveal">Real-world ML systems</h2>
+    <p class="section-desc reveal">Production ML and data science projects with automated pipelines and business impact.</p>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <img src="images/project-1.jpg" alt="EA Financial Tracker" class="project-img" />
+        <div class="project-body">
+          <h3>EA Financial Tracker</h3>
+          <p>Real-time East Africa exchange rates & crypto tracker with ML predictions. Hourly automated data pipeline via GitHub Actions. Streamlit dashboard with live charts and forecasts.</p>
+          <div class="project-tags">
+            <span class="tag">Streamlit</span>
+            <span class="tag">LightGBM</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">FastAPI</span>
+          </div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/ea-financial-tracker" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://ea-financial-tracker.streamlit.app/" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <img src="images/project-2.jpg" alt="EA News Sentiment API" class="project-img" />
+        <div class="project-body">
+          <h3>EA News Sentiment API</h3>
+          <p>NLP-powered sentiment analysis API for East African news. Built with FastAPI and VADER, deployed on Streamlit. Generates ~48 automated commits/day tracking sentiment trends.</p>
+          <div class="project-tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">VADER</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Streamlit</span>
+          </div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://eastafricanewssentiment.streamlit.app/" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <img src="images/project-2.jpg" alt="Credit Card Segmentation" class="project-img" />
+        <div class="project-body">
+          <h3>Credit Card Segmentation</h3>
+          <p>Customer segmentation using clustering and dimensionality reduction to identify high-value and at-risk cohorts. Includes interactive dashboards for segment profiling and targeting.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">K-Means</span>
+            <span class="tag">Pandas</span>
+          </div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/credit-card-segmentation" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://github.com/nyandajr/credit-card-segmentation/tree/main/notebooks" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-book"></i> Notebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <img src="images/project-6.jpg" alt="Customer Churn Prediction" class="project-img" />
+        <div class="project-body">
+          <h3>Customer Churn Prediction</h3>
+          <p>End-to-end churn prediction pipeline using Logistic Regression, Random Forest, and XGBoost on transaction data. Includes model monitoring dashboards and feature importance analysis.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">XGBoost</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Dash</span>
+          </div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/churn-prediction" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://github.com/nyandajr/churn-prediction/blob/main/notebooks/churn_analysis.ipynb" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-book"></i> Notebook</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="section-label reveal">Contact</div>
+      <h2 class="section-title reveal">Get in touch</h2>
+      <p class="section-desc reveal">Interested in collaborating or have a project in mind? Send a message and I'll get back to you.</p>
+      <div class="contact-form reveal">
+        <form action="mailto:freddynyanda@proton.me" enctype="text/plain" method="post">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" name="name" required placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" name="email" required placeholder="your@email.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+      <div class="contact-alt reveal">
+        <p>Need a quicker response? Reach me directly at <a href="mailto:freddynyanda@proton.me">freddynyanda@proton.me</a></p>
+        <div style="display:flex;gap:12px;">
+          <a href="https://github.com/nyandajr" target="_blank" class="btn-sm btn-sm-outline"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/freddy-nyanda-971233204/" target="_blank" class="btn-sm btn-sm-outline"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Built with ❤️ · <a href="https://github.com/nyandajr">GitHub</a></p>
+    <p style="margin-top:8px;">© <span id="year"></span> Freddy Nyanda. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Theme toggle
+  const toggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+  const saved = localStorage.getItem('theme') || 'dark';
+  html.setAttribute('data-theme', saved);
+  toggle.textContent = saved === 'dark' ? '🌙' : '☀️';
+
+  toggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    toggle.textContent = next === 'dark' ? '🌙' : '☀️';
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
 </body>
-
 </html>
