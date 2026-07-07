@@ -1042,15 +1042,32 @@
     <div class="projects-grid">
 
       <div class="project-card reveal">
+        <img src="images/project-1.jpg" alt="Strait of Hormuz Monitor" class="project-img" />
+        <div class="project-body">
+          <h3>Strait of Hormuz Monitor</h3>
+          <p>Real-time AIS vessel tracking for the Strait of Hormuz closure, cross-referenced against live Brent crude prices. Persistent ingestion runs on a self-hosted cloud VM (websocket tracking needs an always-on process, not a scheduled job) with a live public dashboard.</p>
+          <div class="project-tags">
+            <span class="tag">AIS/WebSockets</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Self-hosted Cron</span>
+            <span class="tag">Oracle Cloud</span>
+          </div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/hormuz-strait-monitor" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://nyandajr.github.io/hormuz-strait-monitor" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
         <img src="images/project-1.jpg" alt="EA Financial Tracker" class="project-img" />
         <div class="project-body">
           <h3>EA Financial Tracker</h3>
-          <p>Real-time East Africa exchange rates & crypto tracker with ML predictions. Hourly automated data pipeline via GitHub Actions. Streamlit dashboard with live charts and forecasts.</p>
+          <p>Real-time East Africa exchange rates & crypto tracker with ML predictions. Self-hosted cron pipeline (crypto every 30 min, FX hourly) for reliable sub-hourly updates. Streamlit dashboard with live charts and forecasts.</p>
           <div class="project-tags">
             <span class="tag">Streamlit</span>
-            <span class="tag">LightGBM</span>
-            <span class="tag">GitHub Actions</span>
-            <span class="tag">FastAPI</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Self-hosted Cron</span>
           </div>
           <div class="project-btns">
             <a href="https://github.com/nyandajr/ea-financial-tracker" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
@@ -1060,19 +1077,51 @@
       </div>
 
       <div class="project-card reveal">
-        <img src="images/project-2.jpg" alt="EA News Sentiment API" class="project-img" />
+        <img src="images/project-1.jpg" alt="Global Fuel Watch" class="project-img" />
         <div class="project-body">
-          <h3>EA News Sentiment API</h3>
-          <p>NLP-powered sentiment analysis API for East African news. Built with FastAPI and VADER, deployed on Streamlit. Generates ~48 automated commits/day tracking sentiment trends.</p>
+          <h3>Global Fuel Watch</h3>
+          <p>Fuel price intelligence across 20 countries — petrol, diesel, LPG, and crude oil. Split-cadence pipeline (FX every 20 min, crude every 4 hours) designed around a strict 25-request/day API quota discovered during build-out.</p>
           <div class="project-tags">
-            <span class="tag">FastAPI</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Self-hosted Cron</span>
+            <span class="tag">API Design</span>
+          </div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/global-fuel-watch" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <img src="images/project-2.jpg" alt="East Africa News Sentiment" class="project-img" />
+        <div class="project-body">
+          <h3>East Africa News Sentiment</h3>
+          <p>NLP sentiment tracking for Kenyan, Tanzanian, Ugandan, Rwandan, and Burundian news. Rebuilt on a per-country-verified source mix after discovering mainstream news APIs' free tiers don't actually cover these countries — verified real regional sources before switching providers.</p>
+          <div class="project-tags">
             <span class="tag">VADER</span>
             <span class="tag">NLP</span>
             <span class="tag">Streamlit</span>
+            <span class="tag">Self-hosted Cron</span>
           </div>
           <div class="project-btns">
-            <a href="https://github.com/nyandajr" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://github.com/nyandajr/East_Africa_News_Sentiment" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
             <a href="https://eastafricanewssentiment.streamlit.app/" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <img src="images/project-6.jpg" alt="Tanzania Climate Watch" class="project-img" />
+        <div class="project-body">
+          <h3>Tanzania Climate Watch</h3>
+          <p>Weather monitoring and ML forecasting across 5 Tanzanian cities with z-score anomaly detection, running every 15 minutes on self-hosted cron. Caught genuine pressure anomalies in Dar es Salaam and Zanzibar during testing.</p>
+          <div class="project-tags">
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Self-hosted Cron</span>
+            <span class="tag">Anomaly Detection</span>
+          </div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/tanzania-climate-watch" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
           </div>
         </div>
       </div>
@@ -1091,6 +1140,23 @@
           <div class="project-btns">
             <a href="https://github.com/nyandajr/credit-card-segmentation" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
             <a href="https://github.com/nyandajr/credit-card-segmentation/tree/main/notebooks" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-book"></i> Notebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <img src="images/project-6.jpg" alt="DSN Anomaly Tracker" class="project-img" />
+        <div class="project-body">
+          <h3>DSN Anomaly Tracker</h3>
+          <p>Automated monitoring pipeline for NASA's Deep Space Network, ingesting live feed data, engineering features, and scoring anomalies on a self-hosted cron schedule with a live operations dashboard.</p>
+          <div class="project-tags">
+            <span class="tag">Pandas</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Self-hosted Cron</span>
+          </div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/dsn-anomaly-tracker" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://dsn-anomaly-tracker.streamlit.app/" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
           </div>
         </div>
       </div>
