@@ -1,969 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Freddy Nyanda | ML Engineer & Data Scientist</title>
-  <meta name="description" content="ML Engineer & Data Scientist specializing in customer analytics, churn prediction, and AI-driven insights. Built predictive ML solutions for mobile money and telecom in East Africa." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    :root {
-      --bg: #060a10;
-      --bg2: #0c1220;
-      --bg3: #111827;
-      --card: rgba(255,255,255,0.04);
-      --border: rgba(255,255,255,0.08);
-      --brand: #38bdf8;
-      --brand2: #0ea5e9;
-      --brand-dim: rgba(56,189,248,0.12);
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --white: #ffffff;
-      --shadow: rgba(0,0,0,0.4);
-    }
-
-    [data-theme="light"] {
-      --bg: #f8fafc;
-      --bg2: #f1f5f9;
-      --bg3: #e2e8f0;
-      --card: rgba(0,0,0,0.03);
-      --border: rgba(0,0,0,0.08);
-      --brand: #0284c7;
-      --brand2: #0369a1;
-      --brand-dim: rgba(2,132,199,0.1);
-      --text: #1e293b;
-      --muted: #64748b;
-      --white: #0f172a;
-      --shadow: rgba(0,0,0,0.1);
-    }
-
-    /* THEME TOGGLE */
-    .theme-toggle {
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-
-    .theme-toggle:hover {
-      background: var(--brand-dim);
-      border-color: var(--brand);
-      color: var(--brand);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* NOISE TEXTURE */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      background: rgba(6,10,16,0.8);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 24px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: var(--white);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-
-    .nav-logo span { color: var(--brand); }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--brand); }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--brand-dim);
-      border: 1px solid rgba(56,189,248,0.3);
-      color: var(--brand);
-      padding: 8px 20px;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .nav-cta:hover {
-      background: var(--brand);
-      color: var(--bg);
-    }
-
-    /* HERO */
-    #home {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding-top: 80px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    #home::before {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    #home::after {
-      content: '';
-      position: absolute;
-      bottom: -100px; left: -100px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(14,165,233,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      padding: 60px 0;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--brand-dim);
-      border: 1px solid rgba(56,189,248,0.25);
-      color: var(--brand);
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .hero-tag::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--brand);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-
-    .hero-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -1.5px;
-      margin-bottom: 20px;
-    }
-
-    .hero-title span { color: var(--brand); }
-
-    .hero-desc {
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: 36px;
-      max-width: 480px;
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--brand);
-      color: var(--bg);
-      padding: 14px 28px;
-      border-radius: 100px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.2s;
-      box-shadow: 0 0 30px rgba(56,189,248,0.2);
-    }
-
-    .btn-primary:hover {
-      background: #7dd3fc;
-      transform: translateY(-2px);
-      box-shadow: 0 0 40px rgba(56,189,248,0.35);
-    }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 14px 28px;
-      border-radius: 100px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: var(--brand);
-      color: var(--brand);
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 24px;
-      margin-top: 48px;
-    }
-
-    .stat {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px 20px;
-      text-align: center;
-    }
-
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--white);
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    /* HERO IMAGE */
-    .hero-img-wrap {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-img-frame {
-      position: relative;
-      width: 360px;
-      height: 420px;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--bg2);
-      box-shadow: 0 0 60px rgba(56,189,248,0.1), 0 40px 80px rgba(0,0,0,0.4);
-    }
-
-    .hero-img-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-    }
-
-    .hero-img-frame::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 60%, rgba(6,10,16,0.6));
-      z-index: 1;
-    }
-
-    .hero-badge {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(6,10,16,0.9);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-      padding: 10px 16px;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--white);
-    }
-
-    .hero-badge i { color: var(--brand); }
-    .badge-1 { top: 20px; right: -30px; }
-    .badge-2 { bottom: 40px; left: -30px; }
-
-    /* SECTIONS */
-    section { padding: 100px 0; position: relative; }
-
-    .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--brand);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .section-label::before {
-      content: '';
-      width: 24px; height: 2px;
-      background: var(--brand);
-    }
-
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -1px;
-      margin-bottom: 16px;
-    }
-
-    .section-desc {
-      color: var(--muted);
-      max-width: 560px;
-      margin-bottom: 60px;
-    }
-
-    /* ABOUT */
-    #about { background: var(--bg2); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .about-text p {
-      color: var(--muted);
-      margin-bottom: 16px;
-      line-height: 1.8;
-    }
-
-    .about-text p strong { color: var(--text); }
-
-    .about-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-      margin-top: 32px;
-    }
-
-    .about-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-    }
-
-    .about-card h4 {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--brand);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-    }
-
-    .about-card p {
-      font-size: 0.9rem;
-      color: var(--text);
-      margin: 0;
-    }
-
-    .enjoy-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-    }
-
-    .enjoy-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 20px;
-    }
-
-    .enjoy-card ul { list-style: none; }
-
-    .enjoy-card li {
-      display: flex;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .enjoy-card li:last-child { border-bottom: none; }
-    .enjoy-card li::before { content: '→'; color: var(--brand); flex-shrink: 0; }
-
-    /* EXPERIENCE */
-    .exp-item {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 40px;
-      padding: 40px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .exp-item:last-child { border-bottom: none; }
-
-    .exp-date {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--brand);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-    }
-
-    .exp-role {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-
-    .exp-company {
-      font-size: 0.875rem;
-      color: var(--muted);
-    }
-
-    .exp-points { list-style: none; }
-
-    .exp-points li {
-      display: flex;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-      line-height: 1.6;
-    }
-
-    .exp-points li::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--brand);
-      border-radius: 50%;
-      margin-top: 8px;
-      flex-shrink: 0;
-    }
-
-    /* SKILLS */
-    #skills { background: var(--bg2); }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .skill-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .skill-card:hover {
-      border-color: rgba(56,189,248,0.3);
-      transform: translateY(-4px);
-    }
-
-    .skill-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tag {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 5px 14px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-
-    .tag:hover {
-      background: var(--brand-dim);
-      border-color: rgba(56,189,248,0.3);
-      color: var(--brand);
-    }
-
-    /* PROJECTS */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 24px;
-    }
-
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      border-color: rgba(56,189,248,0.3);
-      transform: translateY(-4px);
-    }
-
-    .project-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .project-body {
-      padding: 24px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-body h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 10px;
-    }
-
-    .project-body p {
-      color: var(--muted);
-      font-size: 0.875rem;
-      line-height: 1.7;
-      flex: 1;
-      margin-bottom: 16px;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-
-    .project-btns {
-      display: flex;
-      gap: 10px;
-    }
-
-    .btn-sm {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 18px;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .btn-sm-primary {
-      background: var(--brand);
-      color: var(--bg);
-    }
-
-    .btn-sm-primary:hover { background: #7dd3fc; }
-
-    .btn-sm-outline {
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-
-    .btn-sm-outline:hover {
-      border-color: var(--brand);
-      color: var(--brand);
-    }
-
-    /* CONTACT */
-    #contact { background: var(--bg2); }
-
-    .contact-wrap {
-      max-width: 640px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .contact-wrap .section-title { margin-bottom: 12px; }
-    .contact-wrap .section-desc { margin: 0 auto 48px; }
-
-    .contact-form {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 40px;
-      text-align: left;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .form-group { margin-bottom: 16px; }
-
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px rgba(56,189,248,0.1);
-    }
-
-    .form-group textarea { resize: vertical; min-height: 120px; }
-
-    .form-submit {
-      width: 100%;
-      background: var(--brand);
-      color: var(--bg);
-      border: none;
-      padding: 16px;
-      border-radius: 100px;
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 8px;
-    }
-
-    .form-submit:hover {
-      background: #7dd3fc;
-      transform: translateY(-2px);
-    }
-
-    .contact-alt {
-      margin-top: 32px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .contact-alt p {
-      font-size: 0.875rem;
-      color: var(--muted);
-    }
-
-    .contact-alt a {
-      color: var(--brand);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 0;
-      text-align: center;
-    }
-
-    footer p {
-      color: var(--muted);
-      font-size: 0.875rem;
-    }
-
-    footer a { color: var(--brand); text-decoration: none; }
-
-    /* REVEAL ANIMATION */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .hero-grid, .about-grid, .exp-item { grid-template-columns: 1fr; }
-      .hero-img-wrap { display: none; }
-      .skills-grid, .projects-grid { grid-template-columns: 1fr; }
-      .hero-stats { flex-wrap: wrap; }
-      .about-cards { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .form-row { grid-template-columns: 1fr; }
-      .contact-alt { flex-direction: column; text-align: center; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Freddy Nyanda</title>
+<meta name="description" content="ML Engineer & Data Scientist building live, self-hosted data systems across East Africa — customer analytics, churn prediction, and production ML at Mixx by Yas." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0B0F14;
+    --surface: #12181F;
+    --surface-raised: #171E27;
+    --border: #232B36;
+    --text: #EDE8DE;
+    --text-muted: #9BA3AE;
+    --text-faint: #5B6472;
+    --accent: #38BDF8;
+    --accent-soft: #38BDF81A;
+    --accent-dim: rgba(56,189,248,0.35);
+    --bull: #3DCB86;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.6);
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+    --bg: #F6F3EC;
+    --surface: #FFFFFF;
+    --surface-raised: #FDFBF6;
+    --border: #E4DECE;
+    --text: #21201B;
+    --text-muted: #6B6656;
+    --text-faint: #9A957F;
+    --accent: #0284C7;
+    --accent-soft: #0284C71A;
+    --accent-dim: rgba(2,132,199,0.3);
+    --bull: #1E8E5A;
+    --shadow: 0 1px 2px rgba(33,32,27,0.04), 0 12px 32px -16px rgba(33,32,27,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    font-variant-numeric: tabular-nums;
+  }
+  .container { max-width: 1080px; margin: 0 auto; padding-inline: 24px; }
+  img { max-width: 100%; }
+  a { color: inherit; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-block: 16px; max-width: 1080px; margin: 0 auto; padding-inline: 24px;
+  }
+  .nav-logo {
+    font-family: var(--mono); font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px;
+  }
+  .status-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--bull); flex-shrink: 0;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--bull) 20%, transparent);
+    animation: pulse 2.4s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.45} }
+  @media (prefers-reduced-motion: reduce) { .status-dot { animation: none; } }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color .15s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 10px; }
+  .theme-toggle {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
+    width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all .15s; flex-shrink: 0;
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent-dim); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 7px; background: var(--accent-soft);
+    border: 1px solid var(--accent-dim); color: var(--accent); padding: 7px 16px; border-radius: 8px;
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 600; text-decoration: none; transition: all .15s;
+  }
+  .nav-cta:hover { background: var(--accent); color: var(--bg); }
+
+  /* HERO */
+  #home { min-height: 100vh; display: flex; align-items: center; padding-top: 90px; padding-bottom: 60px; position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+  }
+  .hero-title {
+    font-family: var(--mono); font-size: clamp(2.1rem, 4.6vw, 3.4rem); font-weight: 700;
+    line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 20px; text-wrap: balance;
+  }
+  .hero-title .accent { color: var(--accent); }
+  .hero-desc { color: var(--text-muted); font-size: 1.05rem; line-height: 1.75; margin-bottom: 32px; max-width: 52ch; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--bg);
+    padding: 13px 24px; border-radius: 10px; font-weight: 700; font-size: 0.88rem; text-decoration: none;
+    transition: all .15s; box-shadow: 0 0 0 1px var(--accent);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -6px var(--accent-dim); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); padding: 13px 24px; border-radius: 10px; font-weight: 600; font-size: 0.88rem;
+    text-decoration: none; transition: all .15s;
+  }
+  .btn-outline:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+  .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+  .stat { background: var(--surface); padding: 16px 14px; }
+  .stat-num { font-family: var(--mono); font-size: 1.35rem; font-weight: 700; }
+  .stat-label { font-size: 0.7rem; color: var(--text-faint); margin-top: 3px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.04em; }
+
+  /* HERO PANEL */
+  .hero-panel {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .hero-panel-photo { position: relative; aspect-ratio: 4/3; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .hero-panel-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  .hero-panel-body { padding: 18px 20px; }
+  .hero-panel-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding-block: 10px; border-bottom: 1px solid var(--border); font-size: 0.82rem;
+  }
+  .hero-panel-row:last-child { border-bottom: none; }
+  .hero-panel-row .k { color: var(--text-faint); font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .hero-panel-row .v { font-weight: 600; text-align: right; }
+
+  /* SECTIONS */
+  section { padding-block: 88px; position: relative; }
+  .section-label {
+    font-family: var(--mono); display: inline-flex; align-items: center; gap: 8px; color: var(--accent);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .section-label::before { content: ''; width: 22px; height: 2px; background: var(--accent); }
+  .section-title { font-family: var(--mono); font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: 14px; text-wrap: balance; }
+  .section-desc { color: var(--text-muted); max-width: 60ch; margin-bottom: 52px; }
+
+  #about { background: var(--surface); border-block: 1px solid var(--border); }
+  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: start; }
+  .about-text p { color: var(--text-muted); margin-bottom: 15px; line-height: 1.8; }
+  .about-text p strong { color: var(--text); font-weight: 600; }
+  .about-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 28px; }
+  .about-card { background: var(--surface-raised); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .about-card h4 { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .about-card p { font-size: 0.88rem; font-weight: 600; margin: 0; }
+
+  .enjoy-card { background: var(--surface-raised); border: 1px solid var(--border); border-radius: 14px; padding: 26px; box-shadow: var(--shadow); }
+  .enjoy-card h3 { font-family: var(--mono); font-size: 0.98rem; font-weight: 700; margin-bottom: 16px; }
+  .enjoy-card ul { list-style: none; }
+  .enjoy-card li { display: flex; gap: 10px; color: var(--text-muted); font-size: 0.88rem; padding-block: 9px; border-bottom: 1px solid var(--border); }
+  .enjoy-card li:last-child { border-bottom: none; }
+  .enjoy-card li i { color: var(--accent); margin-top: 3px; flex-shrink: 0; font-size: 0.78rem; }
+
+  /* EXPERIENCE */
+  .exp-item { display: grid; grid-template-columns: 240px 1fr; gap: 36px; padding-block: 34px; border-bottom: 1px solid var(--border); }
+  .exp-item:first-child { padding-top: 0; }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { font-family: var(--mono); font-size: 0.76rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .exp-role { font-family: var(--mono); font-size: 1.08rem; font-weight: 700; margin-bottom: 4px; }
+  .exp-company { font-size: 0.85rem; color: var(--text-muted); }
+  .exp-points { list-style: none; }
+  .exp-points li { display: flex; gap: 11px; color: var(--text-muted); font-size: 0.89rem; margin-bottom: 11px; line-height: 1.65; }
+  .exp-points li::before { content: ''; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; margin-top: 9px; flex-shrink: 0; }
+
+  /* SKILLS */
+  #skills { background: var(--surface); border-block: 1px solid var(--border); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .skill-card { background: var(--surface-raised); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: border-color .15s, transform .15s; box-shadow: var(--shadow); }
+  .skill-card:hover { border-color: var(--accent-dim); transform: translateY(-3px); }
+  .skill-card h3 { font-family: var(--mono); font-size: 0.85rem; font-weight: 700; margin-bottom: 18px; display: flex; align-items: center; gap: 9px; }
+  .skill-card h3 i { color: var(--accent); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag { background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); padding: 5px 12px; border-radius: 7px; font-size: 0.74rem; font-family: var(--mono); font-weight: 500; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  .project-card {
+    background: var(--surface-raised); border: 1px solid var(--border); border-radius: 14px;
+    padding: 22px; display: flex; flex-direction: column; transition: border-color .15s, transform .15s; box-shadow: var(--shadow);
+  }
+  .project-card:hover { border-color: var(--accent-dim); transform: translateY(-3px); }
+  .project-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+  .project-head h3 { font-family: var(--mono); font-size: 1rem; font-weight: 700; line-height: 1.3; }
+  .live-pill {
+    display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.04em; padding: 3px 9px; border-radius: 999px; flex-shrink: 0; white-space: nowrap;
+  }
+  .live-pill.on { background: color-mix(in srgb, var(--bull) 14%, transparent); color: var(--bull); }
+  .live-pill.off { background: var(--bg); color: var(--text-faint); border: 1px solid var(--border); }
+  .live-pill .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+  .project-body p { color: var(--text-muted); font-size: 0.86rem; line-height: 1.7; flex: 1; margin-bottom: 16px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+  .project-btns { display: flex; gap: 8px; margin-top: auto; }
+  .btn-sm { display: inline-flex; align-items: center; gap: 6px; padding: 8px 15px; border-radius: 8px; font-size: 0.76rem; font-weight: 600; text-decoration: none; transition: all .15s; font-family: var(--mono); }
+  .btn-sm-primary { background: var(--accent); color: var(--bg); }
+  .btn-sm-primary:hover { opacity: 0.88; }
+  .btn-sm-outline { background: var(--bg); border: 1px solid var(--border); color: var(--text); }
+  .btn-sm-outline:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+  /* CONTACT */
+  #contact { background: var(--surface); border-block: 1px solid var(--border); }
+  .contact-wrap { max-width: 620px; margin: 0 auto; text-align: center; }
+  .contact-wrap .section-desc { margin-inline: auto; }
+  .contact-form { background: var(--surface-raised); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: left; box-shadow: var(--shadow); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: var(--text-faint); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .form-group input, .form-group textarea {
+    width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px;
+    color: var(--text); font-family: var(--sans); font-size: 0.9rem; outline: none; transition: border-color .15s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-submit {
+    width: 100%; background: var(--accent); color: var(--bg); border: none; padding: 14px; border-radius: 10px;
+    font-family: var(--mono); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all .15s; margin-top: 4px;
+  }
+  .form-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 20px -6px var(--accent-dim); }
+  .contact-alt {
+    margin-top: 24px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  .contact-alt p { font-size: 0.86rem; color: var(--text-muted); }
+  .contact-alt a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+  footer { border-top: 1px solid var(--border); padding-block: 32px; text-align: center; }
+  footer p { color: var(--text-faint); font-size: 0.82rem; font-family: var(--mono); }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  @media (max-width: 860px) {
+    .hero-grid, .about-grid, .exp-item { grid-template-columns: 1fr; }
+    .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .about-cards { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-alt { flex-direction: column; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#home" class="nav-logo">Freddy <span>Nyanda</span></a>
+    <a href="#home" class="nav-logo"><span class="status-dot"></span>freddy@nyanda</a>
     <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <div style="display:flex;align-items:center;gap:12px;">
-      <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
-      <a href="https://github.com/nyandajr" target="_blank" class="nav-cta">
-        <i class="fab fa-github"></i> GitHub
-      </a>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+      <a href="https://github.com/nyandajr" target="_blank" rel="noopener" class="nav-cta"><i class="fab fa-github"></i> GitHub</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="home">
   <div class="container">
     <div class="hero-grid">
       <div class="reveal">
-        <div class="hero-tag">ML Engineer · Data Scientist · East Africa</div>
-        <h1 class="hero-title">Freddy<br /><span>Nyanda</span></h1>
+        <div class="eyebrow"><span class="status-dot"></span> ML Engineer · Data Scientist · Dar es Salaam</div>
+        <h1 class="hero-title">I build ML systems that <span class="accent">stay running</span> after the demo ends.</h1>
         <p class="hero-desc">
-          I build predictive ML systems and data products that help teams increase retention, grow revenue, and deliver actionable insights at scale across East Africa.
+          Predictive models and self-hosted data pipelines for customer analytics, churn, and revenue — in production at Mixx by Yas, and in <a href="#projects" style="color:var(--accent);text-decoration:none;">8 live public trackers</a> I built and still operate myself.
         </p>
         <div class="hero-btns">
-          <a href="#projects" class="btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
+          <a href="#projects" class="btn-primary"><i class="fas fa-terminal"></i> View live projects</a>
           <a href="#contact" class="btn-outline"><i class="fas fa-envelope"></i> Get in touch</a>
         </div>
         <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-num">5+</div>
-            <div class="stat-label">Models deployed</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">200M+</div>
-            <div class="stat-label">Data processed</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">12+</div>
-            <div class="stat-label">Projects shipped</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">4+</div>
-            <div class="stat-label">Years experience</div>
-          </div>
+          <div class="stat"><div class="stat-num">8</div><div class="stat-label">Live systems</div></div>
+          <div class="stat"><div class="stat-num">200M+</div><div class="stat-label">Records processed</div></div>
+          <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Projects shipped</div></div>
+          <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Years experience</div></div>
         </div>
       </div>
-      <div class="hero-img-wrap reveal">
-        <div class="hero-img-frame">
-          <img src="images/freddy.png" alt="Freddy Nyanda" />
-        </div>
-        <div class="hero-badge badge-1">
-          <i class="fab fa-python"></i>
-          <span>Python Expert</span>
-        </div>
-        <div class="hero-badge badge-2">
-          <i class="fas fa-brain"></i>
-          <span>AI Solutions</span>
+      <div class="hero-panel reveal">
+        <div class="hero-panel-photo"><img src="images/freddy.png" alt="Freddy Nyanda" /></div>
+        <div class="hero-panel-body">
+          <div class="hero-panel-row"><span class="k">Role</span><span class="v">Pricing &amp; CVM Analyst</span></div>
+          <div class="hero-panel-row"><span class="k">Company</span><span class="v">Mixx by Yas · Axian</span></div>
+          <div class="hero-panel-row"><span class="k">Stack</span><span class="v">Python · SQL Server · LightGBM</span></div>
+          <div class="hero-panel-row"><span class="k">Based in</span><span class="v">Dar es Salaam 🇹🇿</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
       <div class="reveal">
-        <div class="section-label">About Me</div>
+        <div class="section-label">About</div>
         <h2 class="section-title">Building ML that moves East Africa forward</h2>
         <div class="about-text">
-          <p>I am an <strong>ML Engineer & Data Scientist</strong> with 4+ years of experience developing predictive and prescriptive machine learning solutions across mobile money, telecom, and research environments.</p>
-          <p>My expertise lies in building robust models for <strong>customer segmentation, churn prediction, and revenue forecasting</strong>. I have hands-on experience deploying LightGBM and XGBoost pipelines into production and translating complex business challenges into actionable AI-driven insights.</p>
-          <p>Currently, I work as a <strong>Pricing & CVM Analyst at Mixx by Yas (Axian Group)</strong>, where I leverage data to optimize pricing strategies and enhance customer value across Tanzania.</p>
+          <p>I'm an <strong>ML Engineer &amp; Data Scientist</strong> with 4+ years developing predictive and prescriptive machine learning solutions across mobile money, telecom, and research environments.</p>
+          <p>My focus is <strong>customer segmentation, churn prediction, and revenue forecasting</strong> — hands-on with LightGBM and XGBoost pipelines in production, and translating business problems into AI-driven decisions.</p>
+          <p>Currently a <strong>Pricing &amp; CVM Analyst at Mixx by Yas (Axian Group)</strong>, optimizing pricing strategy and customer value across Tanzania. Outside work, I design and run 8 self-hosted data pipelines, live in public — real infrastructure, not portfolio pieces that stop working after the first demo.</p>
         </div>
         <div class="about-cards">
-          <div class="about-card">
-            <h4>Experience</h4>
-            <p>4+ Years</p>
-          </div>
-          <div class="about-card">
-            <h4>Specialization</h4>
-            <p>Machine Learning</p>
-          </div>
-          <div class="about-card">
-            <h4>Location</h4>
-            <p>Dar es Salaam 🇹🇿</p>
-          </div>
+          <div class="about-card"><h4>Experience</h4><p>4+ Years</p></div>
+          <div class="about-card"><h4>Specialization</h4><p>Machine Learning</p></div>
+          <div class="about-card"><h4>Location</h4><p>Dar es Salaam 🇹🇿</p></div>
         </div>
       </div>
       <div class="enjoy-card reveal">
         <h3>What I enjoy building</h3>
         <ul>
-          <li>End-to-end ML pipelines — data, model, deployment</li>
-          <li>Customer analytics dashboards & segmentation tools</li>
-          <li>Forecasting & optimization models for revenue & churn</li>
-          <li>Production-grade APIs and automated data products</li>
-          <li>CI/CD pipelines for ML workflows</li>
-          <li>Real-time financial tracking & prediction systems</li>
+          <li><i class="fas fa-arrow-right"></i> End-to-end ML pipelines — data, model, deployment</li>
+          <li><i class="fas fa-arrow-right"></i> Customer analytics dashboards &amp; segmentation tools</li>
+          <li><i class="fas fa-arrow-right"></i> Forecasting &amp; optimization models for revenue &amp; churn</li>
+          <li><i class="fas fa-arrow-right"></i> Production-grade APIs and automated data products</li>
+          <li><i class="fas fa-arrow-right"></i> CI/CD pipelines for ML workflows</li>
+          <li><i class="fas fa-arrow-right"></i> Real-time financial tracking &amp; prediction systems</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
-    <div class="section-label reveal">Work Experience</div>
+    <div class="section-label reveal">Experience</div>
     <h2 class="section-title reveal">Where I've delivered impact</h2>
     <p class="section-desc reveal">Roles focused on turning data into measurable business outcomes using AI-driven systems.</p>
 
     <div class="exp-item reveal">
       <div>
         <div class="exp-date">Jan 2025 – Present</div>
-        <div class="exp-role">Pricing & CVM Analyst</div>
+        <div class="exp-role">Pricing &amp; CVM Analyst</div>
         <div class="exp-company">Mixx by Yas · Axian Group</div>
       </div>
       <ul class="exp-points">
         <li>Develop predictive churn and revenue forecasting models using Python, LightGBM, and XGBoost to support customer value management.</li>
-        <li>Built 7-segment behavioral customer segmentation model (Super Power User → Passive) to optimize campaign targeting, improve ARPU, and enhance retention.</li>
-        <li>Maintains ML pipelines, ETL procedures, data cubes, and automated reporting systems on SQL Server.</li>
-        <li>Built PushPromo daily prediction pipeline and Luku SMS Reminder Engine running in production.</li>
-        <li>Collaborated with commercial teams to translate business problems into data-driven AI solutions.</li>
+        <li>Built a 7-segment behavioral customer segmentation model (Super Power User → Passive) to optimize campaign targeting, improve ARPU, and enhance retention.</li>
+        <li>Maintain ML pipelines, ETL procedures, data cubes, and automated reporting systems on SQL Server.</li>
+        <li>Built the PushPromo daily prediction pipeline and the Luku SMS Reminder Engine — both running in production.</li>
+        <li>Collaborate with commercial teams to translate business problems into data-driven AI solutions.</li>
       </ul>
     </div>
 
@@ -974,7 +374,7 @@
         <div class="exp-company">AI4D Research Lab</div>
       </div>
       <ul class="exp-points">
-        <li>Led end-to-end ML lifecycle, from data acquisition and EDA to model development, deployment, and monitoring.</li>
+        <li>Led the end-to-end ML lifecycle, from data acquisition and EDA to model development, deployment, and monitoring.</li>
         <li>Deployed deep learning-based prediction models using TensorFlow/PyTorch for early-risk identification.</li>
         <li>Improved model accuracy and stability through systematic feature engineering and tuning.</li>
         <li>Worked with multidisciplinary teams to deliver AI-driven insights for operational and policy planning.</li>
@@ -983,240 +383,229 @@
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="container">
-    <div class="section-label reveal">Skills & Competencies</div>
-    <h2 class="section-title reveal">Tools I use to build & deploy</h2>
-    <p class="section-desc reveal">A snapshot of the tools and techniques I use to design, build, and deploy data products.</p>
+    <div class="section-label reveal">Skills &amp; Competencies</div>
+    <h2 class="section-title reveal">Tools I use to build &amp; deploy</h2>
+    <p class="section-desc reveal">What I actually reach for to design, build, and run data products in production.</p>
     <div class="skills-grid">
       <div class="skill-card reveal">
-        <h3><span>🧠</span> ML & Analytics</h3>
+        <h3><i class="fas fa-brain"></i> ML &amp; Analytics</h3>
         <div class="skill-tags">
-          <span class="tag">LightGBM</span>
-          <span class="tag">XGBoost</span>
-          <span class="tag">Scikit-learn</span>
-          <span class="tag">Predictive Modeling</span>
-          <span class="tag">Customer Segmentation</span>
-          <span class="tag">Time Series</span>
-          <span class="tag">Feature Engineering</span>
-          <span class="tag">EDA</span>
+          <span class="tag">LightGBM</span><span class="tag">XGBoost</span><span class="tag">Scikit-learn</span>
+          <span class="tag">Predictive Modeling</span><span class="tag">Customer Segmentation</span>
+          <span class="tag">Time Series</span><span class="tag">Feature Engineering</span><span class="tag">EDA</span>
         </div>
       </div>
       <div class="skill-card reveal">
-        <h3><span>🗄️</span> Data Platforms</h3>
+        <h3><i class="fas fa-database"></i> Data Platforms</h3>
         <div class="skill-tags">
-          <span class="tag">SQL Server</span>
-          <span class="tag">Python</span>
-          <span class="tag">Pandas</span>
-          <span class="tag">NumPy</span>
-          <span class="tag">ETL Pipelines</span>
-          <span class="tag">Power BI</span>
-          <span class="tag">Tableau</span>
-          <span class="tag">REST APIs</span>
+          <span class="tag">SQL Server</span><span class="tag">Python</span><span class="tag">Pandas</span>
+          <span class="tag">NumPy</span><span class="tag">ETL Pipelines</span><span class="tag">Power BI</span>
+          <span class="tag">Tableau</span><span class="tag">REST APIs</span>
         </div>
       </div>
       <div class="skill-card reveal">
-        <h3><span>⚙️</span> Engineering</h3>
+        <h3><i class="fas fa-gears"></i> Engineering</h3>
         <div class="skill-tags">
-          <span class="tag">Docker</span>
-          <span class="tag">GitHub Actions</span>
-          <span class="tag">CI/CD</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">Streamlit</span>
-          <span class="tag">Git</span>
-          <span class="tag">Azure AI</span>
-          <span class="tag">Linux</span>
+          <span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">CI/CD</span>
+          <span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">Git</span>
+          <span class="tag">Azure AI</span><span class="tag">Linux</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
     <div class="section-label reveal">Featured Projects</div>
     <h2 class="section-title reveal">Real-world ML systems</h2>
-    <p class="section-desc reveal">Production ML and data science projects with automated pipelines and business impact.</p>
+    <p class="section-desc reveal">Production ML and data pipelines with real automation and real business impact — "Live" means it's genuinely running right now, refreshed on its own schedule, not a static demo.</p>
     <div class="projects-grid">
 
       <div class="project-card reveal">
-        <img src="images/project-6.jpg" alt="Global Flight Emissions Tracker" class="project-img" />
+        <div class="project-head">
+          <h3>Global Crypto Sentiment Index</h3>
+          <span class="live-pill on"><span class="dot"></span>Live · 3min</span>
+        </div>
         <div class="project-body">
+          <p>Composite market sentiment blending real price momentum, CoinGecko's crowd-sourced sentiment votes, and VADER NLP on live news — refreshed every 3 minutes, around the clock, ~480 real snapshots a day.</p>
+          <div class="project-tags"><span class="tag">VADER</span><span class="tag">CoinGecko API</span><span class="tag">Self-hosted Cron</span></div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/global-crypto-sentiment" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://nyandajr.github.io/global-crypto-sentiment/" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fas fa-arrow-up-right-from-square"></i> Live</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-head">
           <h3>Global Flight Emissions Tracker</h3>
-          <p>Live global aircraft tracking with modeled per-flight CO2 estimates, updated every 15 minutes from ~10,000 aircraft worldwide. Phase-of-flight fuel burn modeling, airline emissions leaderboard, unsupervised fleet-efficiency clustering, and a dark-aircraft anomaly heuristic. Started as an East Africa tracker — killed that scope after live testing showed the region has almost no ADS-B ground-receiver coverage (2 aircraft detected vs 735 in a same-size Europe test box), so it tracks globally instead, with East Africa's coverage gap itself surfaced as a finding.</p>
-          <div class="project-tags">
-            <span class="tag">Scikit-learn</span>
-            <span class="tag">Self-hosted Cron</span>
-            <span class="tag">Emissions Modeling</span>
-            <span class="tag">Anomaly Detection</span>
-          </div>
+          <span class="live-pill on"><span class="dot"></span>Live · 15min</span>
+        </div>
+        <div class="project-body">
+          <p>Live global aircraft tracking with modeled per-flight CO2 estimates from ~10,000 aircraft worldwide. Started as an East Africa tracker — killed that scope after live testing showed almost no regional ADS-B coverage (2 aircraft vs. 735 in a same-size Europe box), so it went global with that gap surfaced as a finding, not hidden.</p>
+          <div class="project-tags"><span class="tag">Scikit-learn</span><span class="tag">Anomaly Detection</span><span class="tag">Self-hosted Cron</span></div>
           <div class="project-btns">
-            <a href="https://github.com/nyandajr/global-flight-emissions-tracker" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
-            <a href="https://nyandajr.github.io/global-flight-emissions-tracker/" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/nyandajr/global-flight-emissions-tracker" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://nyandajr.github.io/global-flight-emissions-tracker/" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fas fa-arrow-up-right-from-square"></i> Live</a>
           </div>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <img src="images/project-1.jpg" alt="Strait of Hormuz Monitor" class="project-img" />
-        <div class="project-body">
+        <div class="project-head">
           <h3>Strait of Hormuz Monitor</h3>
-          <p>Real-time AIS vessel tracking for the Strait of Hormuz closure, cross-referenced against live Brent crude prices. Persistent ingestion runs on a self-hosted cloud VM (websocket tracking needs an always-on process, not a scheduled job) with a live public dashboard.</p>
-          <div class="project-tags">
-            <span class="tag">AIS/WebSockets</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">Self-hosted Cron</span>
-            <span class="tag">Oracle Cloud</span>
-          </div>
+          <span class="live-pill on"><span class="dot"></span>Live</span>
+        </div>
+        <div class="project-body">
+          <p>Real-time AIS vessel tracking through the strait, cross-referenced against live Brent crude prices. Runs on a self-hosted cloud VM — websocket ingestion needs an always-on process, not a scheduled job — with a public dashboard.</p>
+          <div class="project-tags"><span class="tag">AIS/WebSockets</span><span class="tag">SQLite</span><span class="tag">Oracle Cloud</span></div>
           <div class="project-btns">
-            <a href="https://github.com/nyandajr/hormuz-strait-monitor" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
-            <a href="https://nyandajr.github.io/hormuz-strait-monitor" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/nyandajr/hormuz-strait-monitor" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://nyandajr.github.io/hormuz-strait-monitor" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fas fa-arrow-up-right-from-square"></i> Live</a>
           </div>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <img src="images/project-1.jpg" alt="EA Financial Tracker" class="project-img" />
+        <div class="project-head">
+          <h3>East Africa Dev Ledger</h3>
+          <span class="live-pill on"><span class="dot"></span>Live · 5-day</span>
+        </div>
         <div class="project-body">
-          <h3>EA Financial Tracker</h3>
-          <p>Real-time East Africa exchange rates & crypto tracker with ML predictions. Self-hosted cron pipeline (crypto every 30 min, FX hourly) for reliable sub-hourly updates. Streamlit dashboard with live charts and forecasts.</p>
-          <div class="project-tags">
-            <span class="tag">Streamlit</span>
-            <span class="tag">Scikit-learn</span>
-            <span class="tag">Self-hosted Cron</span>
-          </div>
+          <p>GitHub GraphQL-verified developer leaderboard for Tanzania, Kenya &amp; Uganda — built after finding the incumbent leaderboard was stale for weeks and ranking farmed commit history as real activity.</p>
+          <div class="project-tags"><span class="tag">GitHub GraphQL</span><span class="tag">Python</span><span class="tag">Self-hosted Cron</span></div>
           <div class="project-btns">
-            <a href="https://github.com/nyandajr/ea-financial-tracker" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
-            <a href="https://ea-financial-tracker.streamlit.app/" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/nyandajr/east-africa-dev-leaderboard-" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://nyandajr.github.io/east-africa-dev-leaderboard-/" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fas fa-arrow-up-right-from-square"></i> Live</a>
           </div>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <img src="images/project-1.jpg" alt="Global Fuel Watch" class="project-img" />
-        <div class="project-body">
+        <div class="project-head">
           <h3>Global Fuel Watch</h3>
-          <p>Fuel price intelligence across 20 countries — petrol, diesel, LPG, and crude oil. Split-cadence pipeline (FX every 20 min, crude every 4 hours) designed around a strict 25-request/day API quota discovered during build-out.</p>
-          <div class="project-tags">
-            <span class="tag">Pandas</span>
-            <span class="tag">Self-hosted Cron</span>
-            <span class="tag">API Design</span>
-          </div>
+          <span class="live-pill on"><span class="dot"></span>Live · 4hr</span>
+        </div>
+        <div class="project-body">
+          <p>Real crude/FX tracking plus verified retail petrol/diesel prices for 9 countries. Found the README claiming full 20-country coverage when 19 of 21 per-country scrapers were empty placeholders — fixed it the honest way instead of deleting the claim.</p>
+          <div class="project-tags"><span class="tag">Pandas</span><span class="tag">API Design</span><span class="tag">Self-hosted Cron</span></div>
           <div class="project-btns">
-            <a href="https://github.com/nyandajr/global-fuel-watch" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://github.com/nyandajr/global-fuel-watch" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://global-fuel-watch-nyandajr.streamlit.app/" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fas fa-arrow-up-right-from-square"></i> Live</a>
           </div>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <img src="images/project-2.jpg" alt="East Africa News Sentiment" class="project-img" />
+        <div class="project-head">
+          <h3>EA Financial Tracker</h3>
+          <span class="live-pill on"><span class="dot"></span>Live · 30min</span>
+        </div>
         <div class="project-body">
+          <p>Real-time East Africa exchange rates &amp; crypto tracker with ML forecasts. Self-hosted cron (crypto every 30 min, FX hourly) feeding a Streamlit dashboard with live charts.</p>
+          <div class="project-tags"><span class="tag">Streamlit</span><span class="tag">Scikit-learn</span><span class="tag">Self-hosted Cron</span></div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/ea-financial-tracker" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://ea-financial-tracker.streamlit.app/" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fas fa-arrow-up-right-from-square"></i> Live</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-head">
           <h3>East Africa News Sentiment</h3>
-          <p>NLP sentiment tracking for Kenyan, Tanzanian, Ugandan, Rwandan, and Burundian news. Rebuilt on a per-country-verified source mix after discovering mainstream news APIs' free tiers don't actually cover these countries — verified real regional sources before switching providers.</p>
-          <div class="project-tags">
-            <span class="tag">VADER</span>
-            <span class="tag">NLP</span>
-            <span class="tag">Streamlit</span>
-            <span class="tag">Self-hosted Cron</span>
-          </div>
+          <span class="live-pill on"><span class="dot"></span>Live · Hourly</span>
+        </div>
+        <div class="project-body">
+          <p>NLP sentiment tracking for Kenyan, Tanzanian, Ugandan, Rwandan, and Burundian news. Rebuilt on a per-country-verified source mix after discovering mainstream news APIs' free tiers didn't actually cover these countries.</p>
+          <div class="project-tags"><span class="tag">VADER</span><span class="tag">NLP</span><span class="tag">Streamlit</span></div>
           <div class="project-btns">
-            <a href="https://github.com/nyandajr/East_Africa_News_Sentiment" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
-            <a href="https://eastafricanewssentiment.streamlit.app/" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/nyandajr/East_Africa_News_Sentiment" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://eastafricanewssentiment.streamlit.app/" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fas fa-arrow-up-right-from-square"></i> Live</a>
           </div>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <img src="images/project-6.jpg" alt="Tanzania Climate Watch" class="project-img" />
-        <div class="project-body">
+        <div class="project-head">
           <h3>Tanzania Climate Watch</h3>
-          <p>Weather monitoring and ML forecasting across 5 Tanzanian cities with z-score anomaly detection, running every 15 minutes on self-hosted cron. Caught genuine pressure anomalies in Dar es Salaam and Zanzibar during testing.</p>
-          <div class="project-tags">
-            <span class="tag">Scikit-learn</span>
-            <span class="tag">Self-hosted Cron</span>
-            <span class="tag">Anomaly Detection</span>
-          </div>
+          <span class="live-pill on"><span class="dot"></span>Live · 15min</span>
+        </div>
+        <div class="project-body">
+          <p>Weather monitoring and ML forecasting across 5 Tanzanian cities with z-score anomaly detection. Caught genuine pressure anomalies in Dar es Salaam and Zanzibar during testing.</p>
+          <div class="project-tags"><span class="tag">Scikit-learn</span><span class="tag">Anomaly Detection</span><span class="tag">Self-hosted Cron</span></div>
           <div class="project-btns">
-            <a href="https://github.com/nyandajr/tanzania-climate-watch" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://github.com/nyandajr/tanzania-climate-watch" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
           </div>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <img src="images/project-2.jpg" alt="Credit Card Segmentation" class="project-img" />
-        <div class="project-body">
-          <h3>Credit Card Segmentation</h3>
-          <p>Customer segmentation using clustering and dimensionality reduction to identify high-value and at-risk cohorts. Includes interactive dashboards for segment profiling and targeting.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">Scikit-learn</span>
-            <span class="tag">K-Means</span>
-            <span class="tag">Pandas</span>
-          </div>
-          <div class="project-btns">
-            <a href="https://github.com/nyandajr/credit-card-segmentation" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
-            <a href="https://github.com/nyandajr/credit-card-segmentation/tree/main/notebooks" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-book"></i> Notebook</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <img src="images/project-6.jpg" alt="DSN Anomaly Tracker" class="project-img" />
-        <div class="project-body">
+        <div class="project-head">
           <h3>DSN Anomaly Tracker</h3>
-          <p>Automated monitoring pipeline for NASA's Deep Space Network, ingesting live feed data, engineering features, and scoring anomalies on a self-hosted cron schedule with a live operations dashboard.</p>
-          <div class="project-tags">
-            <span class="tag">Pandas</span>
-            <span class="tag">Matplotlib</span>
-            <span class="tag">Self-hosted Cron</span>
-          </div>
+          <span class="live-pill on"><span class="dot"></span>Live</span>
+        </div>
+        <div class="project-body">
+          <p>Automated monitoring for NASA's Deep Space Network — ingests live feed data, engineers features, and scores anomalies on a self-hosted cron schedule with a live operations dashboard.</p>
+          <div class="project-tags"><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Self-hosted Cron</span></div>
           <div class="project-btns">
-            <a href="https://github.com/nyandajr/dsn-anomaly-tracker" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
-            <a href="https://dsn-anomaly-tracker.streamlit.app/" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/nyandajr/dsn-anomaly-tracker" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://dsn-anomaly-tracker.streamlit.app/" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fas fa-arrow-up-right-from-square"></i> Live</a>
           </div>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <img src="images/project-6.jpg" alt="Customer Churn Prediction" class="project-img" />
+        <div class="project-head">
+          <h3>Car Price Predictor — Tanzania</h3>
+          <span class="live-pill off">Notebook</span>
+        </div>
         <div class="project-body">
+          <p>ML-powered used car price predictor with real-time TZS conversion. LightGBM model trained on 19,000+ cars achieving R²=0.74, with a full CI/CD pipeline and FastAPI deployment.</p>
+          <div class="project-tags"><span class="tag">LightGBM</span><span class="tag">FastAPI</span><span class="tag">CI/CD</span></div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/car-price-predictor-tz" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-head">
+          <h3>Credit Card Segmentation</h3>
+          <span class="live-pill off">Notebook</span>
+        </div>
+        <div class="project-body">
+          <p>Customer segmentation using clustering and dimensionality reduction to identify high-value and at-risk cohorts, with interactive dashboards for segment profiling and targeting.</p>
+          <div class="project-tags"><span class="tag">K-Means</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span></div>
+          <div class="project-btns">
+            <a href="https://github.com/nyandajr/credit-card-segmentation" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://github.com/nyandajr/credit-card-segmentation/tree/main/notebooks" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fas fa-book"></i> Notebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-head">
           <h3>Customer Churn Prediction</h3>
-          <p>End-to-end churn prediction pipeline using Logistic Regression, Random Forest, and XGBoost on transaction data. Includes model monitoring dashboards and feature importance analysis.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">XGBoost</span>
-            <span class="tag">Scikit-learn</span>
-            <span class="tag">Dash</span>
-          </div>
-          <div class="project-btns">
-            <a href="https://github.com/nyandajr/churn-prediction" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
-            <a href="https://github.com/nyandajr/churn-prediction/blob/main/notebooks/churn_analysis.ipynb" target="_blank" class="btn-sm btn-sm-outline"><i class="fas fa-book"></i> Notebook</a>
-          </div>
+          <span class="live-pill off">Notebook</span>
         </div>
-      </div>
-<div class="project-card reveal">
-        <img src="images/project-1.jpg" alt="Car Price Predictor Tanzania" class="project-img" />
         <div class="project-body">
-          <h3>Car Price Predictor — Tanzania 🇹🇿</h3>
-          <p>ML-powered used car price predictor with real-time TZS conversion. LightGBM model trained on 19,000+ cars achieving R²=0.74. Full CI/CD pipeline with automated testing and FastAPI deployment.</p>
-          <div class="project-tags">
-            <span class="tag">LightGBM</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">CI/CD</span>
-            <span class="tag">Python</span>
-          </div>
+          <p>End-to-end churn prediction pipeline using Logistic Regression, Random Forest, and XGBoost on transaction data, with model monitoring and feature importance analysis.</p>
+          <div class="project-tags"><span class="tag">XGBoost</span><span class="tag">Scikit-learn</span><span class="tag">Dash</span></div>
           <div class="project-btns">
-            <a href="https://github.com/nyandajr/car-price-predictor-tz" target="_blank" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://github.com/nyandajr/churn-prediction" target="_blank" rel="noopener" class="btn-sm btn-sm-primary"><i class="fab fa-github"></i> Code</a>
+            <a href="https://github.com/nyandajr/churn-prediction/blob/main/notebooks/churn_analysis.ipynb" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fas fa-book"></i> Notebook</a>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="contact-wrap">
@@ -1226,68 +615,52 @@
       <div class="contact-form reveal">
         <form action="https://formspree.io/f/mykbbwgw" method="POST">
           <div class="form-row">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" name="name" required placeholder="Your name" />
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" required placeholder="your@email.com" />
-            </div>
+            <div class="form-group"><label>Name</label><input type="text" name="name" required placeholder="Your name" /></div>
+            <div class="form-group"><label>Email</label><input type="email" name="email" required placeholder="your@email.com" /></div>
           </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
-          </div>
+          <div class="form-group"><label>Message</label><textarea name="message" rows="5" required placeholder="Tell me about your project..."></textarea></div>
           <button type="submit" class="form-submit">Send Message →</button>
         </form>
       </div>
       <div class="contact-alt reveal">
         <p>Need a quicker response? Reach me directly at <a href="mailto:freddynyanda@proton.me">freddynyanda@proton.me</a></p>
-        <div style="display:flex;gap:12px;">
-          <a href="https://github.com/nyandajr" target="_blank" class="btn-sm btn-sm-outline"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/freddy-nyanda-971233204/" target="_blank" class="btn-sm btn-sm-outline"><i class="fab fa-linkedin"></i></a>
+        <div style="display:flex;gap:10px;">
+          <a href="https://github.com/nyandajr" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/freddy-nyanda-971233204/" target="_blank" rel="noopener" class="btn-sm btn-sm-outline"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
-    <p>Built with ❤️ · <a href="https://github.com/nyandajr">GitHub</a></p>
-    <p style="margin-top:8px;">© <span id="year"></span> Freddy Nyanda. All rights reserved.</p>
+    <p>Built by nyandajr · <a href="https://github.com/nyandajr">github.com/nyandajr</a></p>
+    <p style="margin-top:6px;">© <span id="year"></span> Freddy Nyanda</p>
   </div>
 </footer>
 
 <script>
-  // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Theme toggle
   const toggle = document.getElementById('themeToggle');
   const html = document.documentElement;
-  const saved = localStorage.getItem('theme') || 'dark';
-  html.setAttribute('data-theme', saved);
-  toggle.textContent = saved === 'dark' ? '🌙' : '☀️';
+  let saved = 'dark';
+  try { saved = localStorage.getItem('theme') || 'dark'; } catch (e) {}
+  if (saved === 'light') html.setAttribute('data-theme', 'light');
+  toggle.innerHTML = saved === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
 
   toggle.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    toggle.textContent = next === 'dark' ? '🌙' : '☀️';
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    if (next === 'light') html.setAttribute('data-theme', 'light');
+    else html.removeAttribute('data-theme');
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    toggle.innerHTML = next === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
   });
 
-  // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 </script>
